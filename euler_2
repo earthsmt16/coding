@@ -1,0 +1,18 @@
+<?php
+
+function getFibSequence($itemOne, $itemTwo)
+{
+	$fibArray = array($itemOne, $itemTwo);
+	$index = 0;
+	$limit = 1000;
+	while($current < $limit)
+	{
+		$current = $fibArray[$index] + $fibArray[$index+1];
+		$index++;
+		array_push($fibArray,$current);
+	}
+	return $fibArray;
+}
+
+var_dump(getFibSequence(1,2));
+
