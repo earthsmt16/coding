@@ -25,5 +25,5 @@ function determineOddEven($number)
 	return $rtn;	
 }
 
-$limit = 4000000;
+$limit = 4,000000;
 var_dump(getFibSequence(1, 2, $limit));
