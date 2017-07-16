@@ -7,18 +7,19 @@ function getPrime($number)
 	$end = array();
 	while($start <= $limit)
 	{
-		$rtn =(((int) ($number/$start)) == ($number/$start));
+		$factor = $number/$start; 
+		$rtn =(((int) ($factor)) == ($factor));
 		if($rtn)
 		{
 			array_push($end, $start);
-			$end = array_merge($end, getPrime($number/$start));
+			$end = array_merge($end, getPrime($factor));
 			break;
 		}
 		else
 		{
 			$start++;
 		}
-		$limit = ($number/$start);
+		$limit = ($factor);
 	}
 	$end = empty($end) ? array($number): $end;
 	return $end;
