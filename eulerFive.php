@@ -1,8 +1,8 @@
 <?php
 
-function calculateDivisionalNumber($ranges)
+function calculateDivisionalNumber($ranges, $jump)
 {
-	$start = $ranges[0];
+	$start = $jump;
 	$rtn = true;
 	do
 	{
@@ -15,15 +15,46 @@ function calculateDivisionalNumber($ranges)
 				break;
 			}
 		}
-		var_dump($start);
-		$start = !$rtn ? $start+$ranges[0] : $start;
+		$start = !$rtn ? $start+$jump : $start;
 	}
 	while(!$rtn);
-	var_dump($start);
+	return $start;
 }
 
-$factors = (array) range(20,1,-1);
-calculateDivisionalNumber($factors);
+function primeNumberCheck($number, $ranges)
+{
+	$rtn = false;
+	foreach($ranges as $invRange)
+	{
+		if($number != $invRange)
+		{
+			$test = $number/$invRange;
+			$rtn = (((int) $test) == $test);
+			if($rtn)
+			{
+				break;
+			}
+		}
+	}
+	return $rtn ? false : true;
+}
+
+function getMultipleOfPrimeNumbersFromSet($ranges)
+{
+	$multiple = 1;
+	foreach($ranges as $invRange)
+	{
+		if(primeNumberCheck($invRange, $ranges))
+		{
+			$multiple*=$invRange;
+		}
+	}
+	return $multiple;
+}
+
+$factors = (array) range(20,2,-1);
+$number = calculateDivisionalNumber($factors, getMultipleOfPrimeNumbersFromSet($factors));
+var_dump($number);
 
 
 ?>
